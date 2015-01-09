@@ -21,7 +21,7 @@ plot(sdata$DateTime, as.numeric(sdata$Sub_metering_1),
      ylab = "Energy sub metering")
 lines(sdata$DateTime, as.numeric(sdata$Sub_metering_2), col = "red")
 lines(sdata$DateTime, as.numeric(sdata$Sub_metering_3), col = "blue")
-legend("topright", pch = '___', col = c("black", "red", "blue"), 
+legend("topright", lty = 1, col = c("black", "red", "blue"), 
        legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 
 # Close graphic device
