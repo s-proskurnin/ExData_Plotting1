@@ -1,6 +1,11 @@
-# Load data into data.frame
-data <- read.csv("~\\household_power_consumption.txt", 
-                 sep=";", colClasses = "character")
+##uncomment next line if you want to see weekdays in English
+##Sys.setlocale("LC_ALL","English")
+
+##load data
+filePath <- "household_power_consumption.txt"
+if (!file.exists(filePath)) stop("Error: file doesn't exist")
+data <- read.table(filePath, sep=";",header = T, na.strings = '?',
+                       colClasses = c(rep("character",2),rep("numeric",7)) )
 
 # Get requirement data
 sdata <- subset(data, data$Date == "1/2/2007" | 
@@ -39,17 +44,18 @@ with(sdata, {
   lines(sdata$DateTime, as.numeric(sdata$Sub_metering_2), col = "red")
   lines(sdata$DateTime, as.numeric(sdata$Sub_metering_3), col = "blue")
   legend("topright", 
-         pch = '___', 
+         lty = 1,
+         bty = "n",
          border = "white",
          col = c("black", "red", "blue"), 
-         legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+         legend = names(sdata)[7:9])
   
   # Plot 2-2
   plot(sdata$DateTime, as.numeric(sdata$Global_reactive_power),
        type = "l",
        main = "",
        xlab = "datetime",
-       ylab = "Global Reactive Power")
+       ylab = "Global_reactive_power")
 })
 
 # Close graphic device

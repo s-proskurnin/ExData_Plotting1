@@ -1,6 +1,11 @@
-# Load data into data.frame
-data <- read.csv("~\\household_power_consumption.txt", 
-                 sep=";", colClasses = "character")
+##uncomment next line if you want to see weekdays in English
+##Sys.setlocale("LC_ALL","English")
+
+##load data
+filePath <- "household_power_consumption.txt"
+if (!file.exists(filePath)) stop("Error: file doesn't exist")
+data <- read.table(filePath, sep=";",header = T, na.strings = '?',
+                   colClasses = c(rep("character",2),rep("numeric",7)) )
 
 # Get requirement data
 sdata <- subset(data, data$Date == "1/2/2007" | 
