@@ -1,10 +1,10 @@
-##uncomment next line if you want to see weekdays in English
+##uncomment next line to see dayweek names in English
 ##Sys.setlocale("LC_ALL","English")
 
 ##load data
-filePath <- "household_power_consumption.txt"
-if (!file.exists(filePath)) stop("Error: file doesn't exist")
-data <- read.table(filePath, sep=";",header = T, na.strings = '?',
+path2file <- "household_power_consumption.txt"
+if (!file.exists(path2file)) stop("Error: file doesn't exist")
+data <- read.table(path2file, sep=";",header = T, na.strings = '?',
                    colClasses = c(rep("character",2),rep("numeric",7)) )
 
 # Get requirement data
@@ -15,7 +15,7 @@ sdata <- subset(data, data$Date == "1/2/2007" |
 png(filename = "plot1.png", width = 480, height = 480)
 
 # Produce histogramm
-hist(x    = as.numeric(as.character(sdata$Global_active_power)),
+hist(x    = as.numeric(sdata$Global_active_power),
      
      # fill the bars
      col  = "red",

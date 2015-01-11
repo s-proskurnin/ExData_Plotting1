@@ -1,10 +1,10 @@
-##uncomment next line if you want to see weekdays in English
+##uncomment next line to see dayweek names in English
 ##Sys.setlocale("LC_ALL","English")
 
 ##load data
-filePath <- "household_power_consumption.txt"
-if (!file.exists(filePath)) stop("Error: file doesn't exist")
-data <- read.table(filePath, sep=";",header = T, na.strings = '?',
+path2file <- "household_power_consumption.txt"
+if (!file.exists(path2file)) stop("Error: file doesn't exist")
+data <- read.table(path2file, sep=";",header = T, na.strings = '?',
                    colClasses = c(rep("character",2),rep("numeric",7)) )
 
 # Get requirement data
